@@ -29,8 +29,28 @@ form.addEventListener("submit", (e) =>{
 
 tareasDiv.addEventListener("click", (e) => {
     if(e.target.classList.contains("dlt-btn")){
+        // Consigo el id del objecto y lo guardo
         const tareaID = Number(e.target.getAttribute("data-id"));
+
+        //Busco la tarea por id y la elimino
         tareas = tareas.filter(item => item.id !== tareaID);
+
+        // Actualizo la lista en el html
+        actualizarHtml();
+    }
+
+    if(e.target.classList.contains("scs-btn")){
+        const tareaID = Number(e.target.getAttribute("data-id"));
+
+        // Recorro la lista y cuando encuentro el objecto cambio su estado
+        tareas.map(item => {
+            if(item.id === tareaID){
+                return item.estado = !item.estado;
+            }else{
+                return item;
+            }
+        })
+
         actualizarHtml();
     }
 })
@@ -49,7 +69,13 @@ function actualizarHtml(){
         itemTarea.classList.add("item-tarea");
 
         itemTarea.innerHTML = `
-        <span>${item.descripcion}</span>
+        <span>
+            ${
+              item.estado
+                ? `<p class="scs-task"> ${item.descripcion}</p>`
+                : `<p> ${item.descripcion}</p>`
+            }
+        </span>
         <span>${item.date}</span>
         <div class="botones">
             <button data-id="${item.id}" class="scs-btn">✅</button>
