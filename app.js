@@ -15,14 +15,13 @@ form.addEventListener("submit", (e) =>{
         id: Date.now(),
         descripcion: tareaInput.value.trim(),
         estado: false,
-        date: new Date('March 23, 2023 10:40:00')
+        date: new Date(),
+        dateCompleted: null,
     } // Creo el objecto tarea
 
     tareas = [...tareas, objTarea]; // Agrego los datos anteriores y el nuevo objeto tarea
 
     form.reset();
-
-    console.log(tareas);
 
     actualizarHtml();
 })
@@ -45,7 +44,9 @@ tareasDiv.addEventListener("click", (e) => {
         // Recorro la lista y cuando encuentro el objecto cambio su estado
         tareas.map(item => {
             if(item.id === tareaID){
-                return item.estado = !item.estado;
+                item.dateCompleted === null ? item.dateCompleted = new Date() : item.dateCompleted = null;
+                item.estado = !item.estado;
+                return 
             }else{
                 return item;
             }
@@ -57,6 +58,8 @@ tareasDiv.addEventListener("click", (e) => {
 
 function actualizarHtml(){
     tareasDiv.innerHTML = ''; // Reinicio el contenido del div, para que no se dupliquen las tareas
+    
+    console.log(tareas);
 
     if(tareas.length < 1){
         const msj = document.createElement("h5");
@@ -69,16 +72,19 @@ function actualizarHtml(){
         itemTarea.classList.add("item-tarea");
 
         itemTarea.innerHTML = `
-        <span>
             ${
               item.estado
                 ? `<p class="scs-task"> ${item.descripcion}</p>`
                 : `<p> ${item.descripcion}</p>`
             }
-        </span>
-        <span>${item.date}</span>
+        <p class="date">Agregado el: ${item.date.toLocaleDateString()} a las ${item.date.getHours()}:${item.date.getMinutes()}:${item.date.getSeconds()}</p>
+        ${
+          item.dateCompleted === null
+            ? ""
+            : `<p class="date">Completado el: ${item.dateCompleted.toLocaleDateString()} a las ${item.dateCompleted.getHours()}:${item.dateCompleted.getMinutes()}:${item.dateCompleted.getSeconds()}</p>`
+        }
         <div class="botones">
-            <button data-id="${item.id}" class="scs-btn">✅</button>
+            <button type="checkbox" data-id="${item.id}" class="scs-btn">✅</button>
             <button data-id="${item.id}" class="dlt-btn">❌</button>
         </div>
         `;

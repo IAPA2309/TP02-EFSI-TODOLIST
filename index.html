@@ -4,20 +4,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <title>TP02 - TODO</title>
 </head>
 <body>
     <div class="container">
-        <h1>TODO List</h1>
-
-        <form id="formulario"> 
-            <input type="text" id="tarea">
-            <input type="submit" value="Agregar">
-
-        </form>
-        <div class="tareas-container" id="tareas-container">
-            <h5>~ No hay ningun objetivo agregado 🤔~</h5>
+        
+        <div class="container">
+            <h1>TODO List</h1>
+            <form id="formulario"> 
+                <input type="text" id="tarea" autocomplete="off">
+                <input type="submit" value="Agregar" class="btn">
+    
+            </form>
+            <div class="tareas-container" id="tareas-container">
+                <h3>No hay ningun objetivo agregado...</h3>
+            </div>
         </div>
 
     </div>
