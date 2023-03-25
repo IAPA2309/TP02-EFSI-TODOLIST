@@ -52,6 +52,11 @@ body{
     }
 }
 
+p {
+    word-break: break-all;
+    white-space: normal;
+}
+
 .prevent-select {
     -webkit-user-select: none;
     /* Safari */
@@ -69,7 +74,6 @@ body{
 .navbar{
     display: flex;
     background: rgba(255, 255, 255, 0.2);
-    border-radius: 16px;
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid rgba(255, 255, 255, .2);
@@ -80,7 +84,7 @@ body{
 .navbar-item {
     display: flex;
     align-items: center;
-    margin: 10px 10px 0px 10px;
+    margin: 10px 10px 5px 10px;
     padding: 8px;
     border-radius: 6px;
     list-style-type: none;
@@ -175,9 +179,9 @@ input::placeholder{
     margin-top: 15px;
     display: flex;
     align-items: center;
+    justify-content: center;
     width: 600px;
     gap: 10px;
-    justify-content: center;
 }
 
 .btn-secondary{
@@ -194,11 +198,41 @@ input::placeholder{
     border: 0;
     transition: all .2s;
 }
-
 .btn-secondary:hover{
     color: var(--black);
     fill: var(--black);
     cursor: pointer;
+}
+.btn-secondary:disabled{
+    cursor: default;
+    fill: var(--grey2);
+    color: var(--grey2);
+}
+
+
+.date{
+    background-color: #1b1b1b;
+    border-radius: 3px;
+    padding: 10px;
+    margin: 10px;
+}
+.item-tarea{
+    color: white;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    background-color: var(--black);
+    width: 600px;
+    transition: all .25s;
+}
+
+.tareas-container {
+    width: 100%;
+}
+
+.item-tarea:hover {
+    background: #111111;
+    box-shadow: 0 0px 10px 0 rgba(0, 0, 82, .5);
 }
 @media (max-width: 700px) {
     form {
@@ -214,32 +248,31 @@ input::placeholder{
         width: 100%;
     }
     .btn-secondary{
-        width: 100rem;
+        width: 100%;
     }
-}
-
-.date{
-    background-color: #1b1b1b;
-    border-radius: 3px;
-    padding: 10px;
-    margin: 10px;
-}
-
-.item-tarea{
-    color: white;
-    padding: 10px;
-    margin: 10px;
-    border-radius: 6px;
-    background-color: var(--black);
-    transition: all .25s;
-}
-.item-tarea:hover {
-    background: #111111;
-    box-shadow: 0 0px 10px 0 rgba(0, 0, 82, .5);
+    .item-tarea{
+        width: 100%;
+    }
 }
 
 .scs-task{
     text-decoration: line-through;
+}
+.scs-task-bg {
+    background: rgb(0, 0, 0);
+    background: linear-gradient(18deg, rgba(0, 0, 0, 1) 0%, rgba(0, 89, 23, 1) 100%);
+}
+.scs-task-fastest-bg {
+    background: rgb(0, 0, 0);
+    background: linear-gradient(18deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 167, 1) 81%);
+}
+.scs-task-bg:hover {
+    background: rgb(0, 0, 0);
+    background: linear-gradient(18deg, rgba(0, 0, 0, 1) 0%, rgb(2, 109, 30) 100%);
+}
+.scs-task-fastest-bg:hover{
+    background: rgb(0, 0, 0);
+        background: linear-gradient(18deg, rgba(0, 0, 0, 1) 0%, rgb(3, 3, 189) 81%);
 }
 
 .scs-btn{

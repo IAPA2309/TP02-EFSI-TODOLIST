@@ -2,19 +2,27 @@ const form = document.getElementById("formulario");
 const tareaInput = document.getElementById("tarea");
 const tareasDiv = document.getElementById("tareas-container");
 const btn_add = document.getElementById("btn-add");
+const btn_dlt_all = document.getElementById("btn-dlt-all");
+const btn_show_fastest = document.getElementById("btn-show-fastest");
 
 let tareas = [];
 
-tareaInput.onkeyup = (e) =>{
-
-    if(e.target.value.length > 0) btn_add.removeAttribute('disabled', '');
-
-    if(e.target.value.length <= 0) btn_add.setAttribute("disabled", "");
+window.onload = () =>{
+    actualizarHtml();
+    btn_show_fastest.disabled = tareas.length === 0 ? true : false;
+    btn_dlt_all.disabled = tareas.length === 0 ? true : false;
 }
+
+tareaInput.addEventListener('input', () => {
+    btn_add.disabled = tareaInput.value.length === 0 ? true : false;
+})
 
 
 form.addEventListener("submit", (e) =>{
     e.preventDefault();
+    btn_add.disabled = true;
+    btn_show_fastest.disabled = false;
+    btn_dlt_all.disabled = false;
 
     if(!tareaInput.value.trim()) return; // Eviro que el input se manda con puros espacios
     
@@ -77,6 +85,10 @@ function actualizarHtml(){
         
         itemTarea.classList.add("item-tarea");
 
+        if(item.estado){
+            itemTarea.classList.add("scs-task-bg");
+        }
+
         itemTarea.innerHTML = `
             ${
               item.estado
@@ -90,11 +102,18 @@ function actualizarHtml(){
             : `<p class="date">Completado el: ${item.dateCompleted.toLocaleDateString()} a las ${item.dateCompleted.getHours()}:${item.dateCompleted.getMinutes()}:${item.dateCompleted.getSeconds()}</p>`
         }
         <div class="botones">
-            <button type="checkbox" data-id="${item.id}" class="scs-btn">✅</button>
+            <button data-id="${item.id}" class="scs-btn">✅</button>
             <button data-id="${item.id}" class="dlt-btn">❌</button>
         </div>
         `;
 
         tareasDiv.append(itemTarea);
     })
+}
+
+function deleteArray(){
+    btn_show_fastest.disabled = true;
+    btn_dlt_all.disabled = true;
+    tareas = [];
+    actualizarHtml();
 }
