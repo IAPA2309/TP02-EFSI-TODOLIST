@@ -1,13 +1,21 @@
 const form = document.getElementById("formulario");
 const tareaInput = document.getElementById("tarea");
 const tareasDiv = document.getElementById("tareas-container");
+const btn_add = document.getElementById("btn-add");
 
 let tareas = [];
+
+tareaInput.onkeyup = (e) =>{
+
+    if(e.target.value.length > 0) btn_add.removeAttribute('disabled', '');
+
+    if(e.target.value.length <= 0) btn_add.setAttribute("disabled", "");
+}
 
 
 form.addEventListener("submit", (e) =>{
     e.preventDefault();
-    
+
     if(!tareaInput.value.trim()) return; // Eviro que el input se manda con puros espacios
     
     const objTarea = 
@@ -58,8 +66,6 @@ tareasDiv.addEventListener("click", (e) => {
 
 function actualizarHtml(){
     tareasDiv.innerHTML = ''; // Reinicio el contenido del div, para que no se dupliquen las tareas
-    
-    console.log(tareas);
 
     if(tareas.length < 1){
         const msj = document.createElement("h5");

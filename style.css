@@ -36,12 +36,20 @@
 
 body{
     background:
-        radial-gradient(rgba(80, 78, 78, 0.1) 2px, transparent 0),
+    radial-gradient(rgba(80, 78, 78, 0.1) 2px, transparent 0),
         linear-gradient(90deg, #F3F3F7 0%, #EBF0F9 100%),
         radial-gradient(61.04% 89.69% at 100% 100%, rgba(200, 250, 255, 0.4) 0%, rgba(28, 210, 229, 0.4) 40.63%, rgba(28, 210, 229, 0) 100%),
         radial-gradient(43.78% 64.34% at 60.31% 100%, rgba(23, 74, 228, 0.4) 0%, rgba(23, 74, 228, 0) 100%);
     background-size: 25px 25px, auto, 25px 25px, 25px 25px;
     background-position: -19px -19px, 0 0, -19px -19px, -19px -19px;
+    animation: loading 600ms 100ms cubic-bezier(0.38, 0.97, 0.56, 0.76) forwards;
+        opacity: 0;
+}
+@keyframes loading {
+    100% {
+        opacity: 1;
+        transform: none;
+    }
 }
 
 .prevent-select {
@@ -99,6 +107,7 @@ body{
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    padding: 0 20px;
 }
 
 
@@ -106,7 +115,12 @@ form{
     background-color: var(--gray0);
     box-shadow: 0 2px 6px 0 rgba(0, 0, 82, .15);
     border-radius: 6px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 600px;
+    margin: 0 auto;
 }
+
 
 input {
     border-radius: 6px;
@@ -115,22 +129,29 @@ input {
     font-weight: 300;
     border: none;
     display: inline-block;
-    height: 100%;
+    flex: 6 1 auto;
 }
+
 
 input:focus{
     outline: 0;
 }
 
+input::placeholder{
+    color: var(--grey2);
+}
+
 .btn {
     background-color: var(--gray0);
-    color: #000;
+    color: var(--black);
     font-weight: 500;
     padding: 10px;
     border-radius: 0px 6px 6px 0px;
     cursor: pointer;
-    border-left: 1px solid rgba(0, 0, 0, .05);
     align-items: center;
+    border-left: 1px solid rgba(0, 0, 0, .05);
+    flex: 1 1 auto;
+    transition: all .2s;
 }
 
 .btn:hover {
@@ -144,6 +165,21 @@ input:focus{
     transition: all .2s;
 }
 
+.btn:disabled{
+    color: var(--grey2);
+    background-color: var(--gray0);
+    cursor: default;
+}
+
+@media (max-width: 600px) {
+    form {
+        flex-direction: column;
+        width: 100%;
+    }
+    .btn{
+        border-radius: 0px 0px 6px 6px;
+    }
+}
 .date{
     background-color: #1b1b1b;
     border-radius: 3px;
