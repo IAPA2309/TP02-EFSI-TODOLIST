@@ -5,33 +5,83 @@
     box-sizing: border-box;
 }
 
+:root{
+    --bg-white: #fff;
+    --black:#000;
+    --grey: #999;
+    --b20: #ececf1;
+}
+
 body {
-    background-color: #fff;
+    background-color: var(--bg-white);
     color: #000;
     background-image: radial-gradient(rgba(80, 78, 78, 0.1) 2px, transparent 0);
     background-size: 25px 25px;
     background-position: -19px -19px;
 }
 
+.prevent-select {
+    -webkit-user-select: none;
+    /* Safari */
+    -ms-user-select: none;
+    /* IE 10 and IE 11 */
+    user-select: none;
+    /* Standard syntax */
+}
+
+.body-small{
+    color: var(--grey);
+    font-size: medium;
+}
+
+.navbar{
+    display: flex;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, .2);
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar-item {
+    margin: 10px 10px 0px 10px;
+    padding: 8px;
+    border-radius: 6px;
+    list-style-type: none;
+    transition: all .4s;
+}
+
+.navbar-item:hover{
+    background-color: var(--b20);
+}
+
+.sticky {
+    position: sticky;
+    top: 0;
+    width: 100%;
+}
+
 .container{
-    margin-top: 50px;
+    margin-top: 20px;
     display: flex;
     align-items: center;
+    justify-content: center;
     flex-direction: column;
 }
 
-.scs-task{
-    text-decoration: line-through;
-}
 
 form{
     margin-top: 30px;
     margin-bottom: 30px;
-    background-color: #fff;
-    color: #000;
+    background-color: var(--bg-white);
     box-shadow: 0 2px 6px 0 rgba(0, 0, 82, .15);
     border-radius: 6px;
-    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 900px;
 }
 
 input {
@@ -40,6 +90,9 @@ input {
     font-size: 17px;
     font-weight: 300;
     border: none;
+    flex: 1 10;
+    display: inline-block;
+    height: 100%;
 }
 
 input:focus{
@@ -47,23 +100,30 @@ input:focus{
 }
 
 .btn {
-    background-color: #fff;
+    background-color: var(--bg-white);
     color: #000;
     font-weight: 500;
     padding: 10px;
     border-radius: 0px 6px 6px 0px;
     cursor: pointer;
     border-left: 1px solid rgba(0, 0, 0, .05);
+    align-items: center;
 }
 
 .btn:hover {
-    color: #fff;
+    color: var(--bg-white);
     background-color: #000;
 }
 
+.btn:active{
+    color: var(--bg-white);
+    background-color: var(--grey);
+    transition: all .2s;
+}
+
 .date{
-    background-color: #2d2f35;
-    border-radius: 20px;
+    background-color: #1b1b1b;
+    border-radius: 3px;
     padding: 10px;
     margin: 10px;
 }
@@ -71,31 +131,32 @@ input:focus{
 .item-tarea{
     color: white;
     padding: 10px;
-    margin: 5px;
+    margin: 10px;
     border-radius: 10px;
-    background-color: rgb(19, 29, 37);
+    background-color: var(--black);
+    transition: all .25s;
 }
 .item-tarea:hover {
-    padding: 10px;
-    margin: 5px;
-    border-radius: 10px;
-    background-color: rgb(19, 29, 37);
-    background-image: radial-gradient(rgb(80, 78, 78) 1px, transparent 0);
-    background-size: 13px 13px;
-    background-position: -13px -13px;
-    outline: 2px solid red;
+    background: #111111;
+    box-shadow: 0 0px 10px 0 rgba(0, 0, 82, .5);
+}
+
+.scs-task{
+    text-decoration: line-through;
 }
 
 .scs-btn{
     display: inline;
-    background-color: rgb(190, 255, 185);
+    background-color: rgb(235, 255, 234);
     border: none;
     padding: 10px;
     border-radius: 50px;
+    cursor: pointer;
 }
 .dlt-btn{
-    background-color: rgb(255, 206, 205);
+    background-color: rgb(250, 226, 226);
     border: none;
     padding: 10px;
     border-radius: 50px;
+    cursor: pointer;
 }
