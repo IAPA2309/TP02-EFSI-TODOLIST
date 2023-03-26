@@ -75,8 +75,11 @@ tareasDiv.addEventListener("click", (e) => {
 
     actualizarHtml();
   }
-
   
+  if (tareas.length === 0) {
+    btn_show_fastest.disabled = true;
+    btn_dlt_all.disabled = true;
+  }
 })
 
 function actualizarHtml(){
@@ -110,8 +113,8 @@ function actualizarHtml(){
             : `<p class="date">Completado el: ${item.dateCompleted.toLocaleDateString()} a las ${item.dateCompleted.getHours()}:${item.dateCompleted.getMinutes()}:${item.dateCompleted.getSeconds()}</p>`
         }
         <div class="botones">
-            <button data-id="${item.id}" class="scs-btn">✅</button>
-            <button data-id="${item.id}" class="dlt-btn">❌</button>
+            <button data-id="${item.id}" class="scs-btn">✅ Completar</button>
+            <button data-id="${item.id}" class="dlt-btn">❌ Eliminar</button>
         </div>
         `;
 

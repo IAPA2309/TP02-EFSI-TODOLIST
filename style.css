@@ -123,8 +123,12 @@ form{
     display: flex;
     width: 600px;
     margin: 0 auto;
+    transition: all .2s;
 }
 
+form:focus-within {
+    box-shadow: 0 5px 9px 0 rgba(0, 0, 82, .1);
+}
 
 input {
     border-radius: 6px;
@@ -215,7 +219,7 @@ input::placeholder{
     background-color: #1b1b1b;
     border-radius: 3px;
     padding: 10px;
-    margin: 10px;
+    margin: 10px 0 10px 0;
 }
 .item-tarea{
     color: white;
@@ -235,6 +239,69 @@ input::placeholder{
     background: #111111;
     box-shadow: 0 0px 10px 0 rgba(0, 0, 82, .5);
 }
+
+.scs-task{
+    text-decoration: line-through;
+}
+.scs-task-bg {
+    background: var(--black);
+    background: linear-gradient(18deg, rgb(114, 114, 114) 0%, rgb(0, 180, 54) 100%);
+}
+.scs-task-fastest-bg {
+    background: var(--black);
+    background: linear-gradient(18deg, rgb(114, 114, 114) 0%, rgba(0, 0, 167, 1) 81%);
+}
+.scs-task-bg:hover {
+    background: var(--black);
+    background: linear-gradient(18deg, rgb(114, 114, 114) 0%, rgb(2, 192, 59) 100%);
+}
+.scs-task-fastest-bg:hover{
+    background: var(--black);
+    background: linear-gradient(18deg, rgb(114, 114, 114) 0%, rgb(3, 3, 189) 81%);
+}
+
+.alert{
+    color: var(--red0);
+    background-color: rgb(255, 222, 222);
+    padding: 5px;
+    border-radius: 6px;
+    text-align: center;
+}
+
+.botones{
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.scs-btn{
+    width: 100%;
+    background-color: rgb(235, 255, 234);
+    border: none;
+    padding: 8px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.scs-btn:hover{
+    outline: 2px solid rgb(145, 255, 145);
+    color: var(--black);
+}
+
+.dlt-btn{
+    width: 100%;
+    background-color: rgb(250, 226, 226);
+    border: none;
+    padding: 8px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.dlt-btn:hover {
+    outline: 2px solid rgb(255, 119, 119);
+}
+
 @media (max-width: 700px) {
     form {
         flex-direction: column;
@@ -254,47 +321,8 @@ input::placeholder{
     .item-tarea{
         width: 100%;
     }
-}
-
-.scs-task{
-    text-decoration: line-through;
-}
-.scs-task-bg {
-    background: var(--black);
-    background: linear-gradient(18deg, rgb(114, 114, 114) 0%, rgb(0, 180, 54) 100%);
-}
-.scs-task-fastest-bg {
-    background: var(--black);
-    background: linear-gradient(18deg, rgb(114, 114, 114) 0%, rgba(0, 0, 167, 1) 81%);
-}
-.scs-task-bg:hover {
-    background: var(--black);
-    background: linear-gradient(18deg, rgb(114, 114, 114) 0%, rgb(2, 192, 59) 100%);
-}
-.scs-task-fastest-bg:hover{
-    background: var(--black);
-        background: linear-gradient(18deg, rgb(114, 114, 114) 0%, rgb(3, 3, 189) 81%);
-}
-
-.alert{
-    color: var(--red0);
-    background-color: rgb(255, 222, 222);
-    padding: 5px;
-    border-radius: 6px;
-}
-
-.scs-btn{
-    display: inline;
-    background-color: rgb(235, 255, 234);
-    border: none;
-    padding: 10px;
-    border-radius: 50px;
-    cursor: pointer;
-}
-.dlt-btn{
-    background-color: rgb(250, 226, 226);
-    border: none;
-    padding: 10px;
-    border-radius: 50px;
-    cursor: pointer;
+    .botones{
+        flex-direction: column;
+        width: 100%;
+    }
 }
