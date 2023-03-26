@@ -4,13 +4,16 @@ const tareasDiv = document.getElementById("tareas-container");
 const btn_add = document.getElementById("btn-add");
 const btn_dlt_all = document.getElementById("btn-dlt-all");
 const btn_show_fastest = document.getElementById("btn-show-fastest");
+const alertDiv = document.getElementById("alert-div")
 
 let tareas = [];
 
 window.onload = () =>{
-    actualizarHtml();
-    btn_show_fastest.disabled = tareas.length === 0 ? true : false;
-    btn_dlt_all.disabled = tareas.length === 0 ? true : false;
+  actualizarHtml();
+  btn_show_fastest.disabled = tareas.length === 0 ? true : false;
+  btn_dlt_all.disabled = tareas.length === 0 ? true : false;
+
+  actualizarHtml();
 }
 
 tareaInput.addEventListener('input', () => {
@@ -43,33 +46,37 @@ form.addEventListener("submit", (e) =>{
 })
 
 tareasDiv.addEventListener("click", (e) => {
-    if(e.target.classList.contains("dlt-btn")){
-        // Consigo el id del objecto y lo guardo
-        const tareaID = Number(e.target.getAttribute("data-id"));
+  if (e.target.classList.contains("dlt-btn")) {
+    // Consigo el id del objecto y lo guardo
+    const tareaID = Number(e.target.getAttribute("data-id"));
 
-        //Busco la tarea por id y la elimino
-        tareas = tareas.filter(item => item.id !== tareaID);
+    //Busco la tarea por id y la elimino
+    tareas = tareas.filter((item) => item.id !== tareaID);
 
-        // Actualizo la lista en el html
-        actualizarHtml();
-    }
+    // Actualizo la lista en el html
+    actualizarHtml();
+  }
 
-    if(e.target.classList.contains("scs-btn")){
-        const tareaID = Number(e.target.getAttribute("data-id"));
+  if (e.target.classList.contains("scs-btn")) {
+    const tareaID = Number(e.target.getAttribute("data-id"));
 
-        // Recorro la lista y cuando encuentro el objecto cambio su estado
-        tareas.map(item => {
-            if(item.id === tareaID){
-                item.dateCompleted === null ? item.dateCompleted = new Date() : item.dateCompleted = null;
-                item.estado = !item.estado;
-                return 
-            }else{
-                return item;
-            }
-        })
+    // Recorro la lista y cuando encuentro el objecto cambio su estado
+    tareas.map((item) => {
+      if (item.id === tareaID) {
+        item.dateCompleted === null
+          ? (item.dateCompleted = new Date())
+          : (item.dateCompleted = null);
+        item.estado = !item.estado;
+        return;
+      } else {
+        return item;
+      }
+    });
 
-        actualizarHtml();
-    }
+    actualizarHtml();
+  }
+
+  
 })
 
 function actualizarHtml(){
@@ -84,6 +91,7 @@ function actualizarHtml(){
         const itemTarea = document.createElement("div");
         
         itemTarea.classList.add("item-tarea");
+        itemTarea.setAttribute("data-id", `${item.id}`);
 
         if(item.estado){
             itemTarea.classList.add("scs-task-bg");
@@ -116,4 +124,42 @@ function deleteArray(){
     btn_dlt_all.disabled = true;
     tareas = [];
     actualizarHtml();
+}
+
+function findFastestDoneId(){
+    let fastest = 999999999999999999;
+    let timeCompleted = 0;
+    let idFastest = 0;
+    tareas.map(item => {
+        if(item.dateCompleted === null) return;
+
+        timeCompleted = item.dateCompleted.getTime() - item.date.getTime();
+
+        if(timeCompleted < fastest) {
+            fastest = timeCompleted;
+            idFastest = item.id;
+        }
+    })
+
+    const miDiv = document.querySelector(`[data-id="${idFastest}"]`);
+
+    if(miDiv === null){
+
+        alertDiv.classList.add("container");
+
+        (alertDiv.innerHTML = `
+        <p class="alert">ⓘ No hay ninguna tarea completada.</p>
+        `);
+
+        setTimeout(() => {
+          alertDiv.innerHTML = "";
+          alertDiv.classList.remove("container");
+        }, 3000);
+
+    }else{
+        alertDiv.innerHTML = ``;
+        alertDiv.classList.remove("container");
+    }
+
+    miDiv.classList.add("scs-task-fastest-bg");
 }

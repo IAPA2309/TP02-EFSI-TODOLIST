@@ -6,6 +6,7 @@
 }
 
 :root{
+    --red0: rgb(255, 41, 41);
     --gray0: #fff;
     --gray1: #d8d8da;
     --grey2: #999;
@@ -259,20 +260,27 @@ input::placeholder{
     text-decoration: line-through;
 }
 .scs-task-bg {
-    background: rgb(0, 0, 0);
-    background: linear-gradient(18deg, rgba(0, 0, 0, 1) 0%, rgba(0, 89, 23, 1) 100%);
+    background: var(--black);
+    background: linear-gradient(18deg, rgb(114, 114, 114) 0%, rgb(0, 180, 54) 100%);
 }
 .scs-task-fastest-bg {
-    background: rgb(0, 0, 0);
-    background: linear-gradient(18deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 167, 1) 81%);
+    background: var(--black);
+    background: linear-gradient(18deg, rgb(114, 114, 114) 0%, rgba(0, 0, 167, 1) 81%);
 }
 .scs-task-bg:hover {
-    background: rgb(0, 0, 0);
-    background: linear-gradient(18deg, rgba(0, 0, 0, 1) 0%, rgb(2, 109, 30) 100%);
+    background: var(--black);
+    background: linear-gradient(18deg, rgb(114, 114, 114) 0%, rgb(2, 192, 59) 100%);
 }
 .scs-task-fastest-bg:hover{
-    background: rgb(0, 0, 0);
-        background: linear-gradient(18deg, rgba(0, 0, 0, 1) 0%, rgb(3, 3, 189) 81%);
+    background: var(--black);
+        background: linear-gradient(18deg, rgb(114, 114, 114) 0%, rgb(3, 3, 189) 81%);
+}
+
+.alert{
+    color: var(--red0);
+    background-color: rgb(255, 222, 222);
+    padding: 5px;
+    border-radius: 6px;
 }
 
 .scs-btn{

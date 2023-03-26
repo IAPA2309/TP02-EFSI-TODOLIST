@@ -7,8 +7,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
     <title>TP02 - ToDo</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <nav class="navbar sticky">
@@ -36,7 +36,7 @@
             <input type="text" id="tarea" autocomplete="off" placeholder="Terminar el tp de Efsi..."><input type="submit" value="Agregar" class="btn" id="btn-add" disabled>
         </form>
         <div class="container-btn">
-            <button class="btn-secondary" title="Ver completado mas rapido" onclick="" id="btn-show-fastest" disabled>
+            <button class="btn-secondary" title="Ver completado mas rapido" onclick="findFastestDoneId()" id="btn-show-fastest" disabled>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="prevent-select" style="height: 16px; padding: 0px">
                     <path d="M464 256A208 208 0 1 1 48 256a208 208 0 1 1 416 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"/></svg>
             Ver completado mas rapido
@@ -49,6 +49,7 @@
             </button>
         </div>
     </div>
+    <div class="" id="alert-div"></div>
     <div class="tareas-container container" id="tareas-container">
     </div>
 
